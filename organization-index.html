@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enclave Software - Secure Communication Solutions</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <h1>🔒 Enclave Software</h1>
+                        <p>Secure • Private • Open Source</p>
+                    </div>
+                    <nav>
+                        <ul class="nav-tabs">
+                            <li><a href="#home" class="nav-tab active" onclick="showSection('home')">Home</a></li>
+                            <li><a href="#products" class="nav-tab" onclick="showSection('products')">Products</a></li>
+                            <li><a href="#about" class="nav-tab" onclick="showSection('about')">About</a></li>
+                            <li><a href="#security" class="nav-tab" onclick="showSection('security')">Security</a></li>
+                            <li><a href="#contact" class="nav-tab" onclick="showSection('contact')">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="container">
+                <!-- Home Section -->
+                <section id="home" class="section active">
+                    <div class="hero">
+                        <h2>Secure Communication Solutions</h2>
+                        <p>Building the future of private, encrypted communication tools that put security and privacy first.</p>
+                        <div class="cta-buttons">
+                            <a href="https://enclave-messenger.vercel.app/" class="btn btn--primary">Try Enclave Messenger</a>
+                            <a href="https://github.com/Enclave-Software" class="btn btn--secondary">View on GitHub</a>
+                        </div>
+                    </div>
+
+                    <div class="features-grid">
+                        <div class="feature-card" data-bg="bg-1">
+                            <div class="feature-icon">🔐</div>
+                            <h3>End-to-End Encryption</h3>
+                            <p>Military-grade encryption with RSA-2048 + AES-256-GCM hybrid security for unbreakable communications.</p>
+                        </div>
+                        <div class="feature-card" data-bg="bg-2">
+                            <div class="feature-icon">🌐</div>
+                            <h3>No Central Server</h3>
+                            <p>Direct peer-to-peer architecture eliminates single points of failure and third-party data access.</p>
+                        </div>
+                        <div class="feature-card" data-bg="bg-3">
+                            <div class="feature-icon">📱</div>
+                            <h3>Multi-Platform</h3>
+                            <p>Available as GUI, CLI, and web applications. Works on Windows, macOS, and Linux systems.</p>
+                        </div>
+                        <div class="feature-card" data-bg="bg-4">
+                            <div class="feature-icon">🔍</div>
+                            <h3>Open Source</h3>
+                            <p>Fully transparent and auditable code. Security through transparency, not obscurity.</p>
+                        </div>
+                        <div class="feature-card" data-bg="bg-5">
+                            <div class="feature-icon">🛡️</div>
+                            <h3>Privacy First</h3>
+                            <p>Your data stays on your device. No tracking, no logging, no metadata collection.</p>
+                        </div>
+                        <div class="feature-card" data-bg="bg-6">
+                            <div class="feature-icon">🇮🇳</div>
+                            <h3>Made in India</h3>
+                            <p>Proudly developed in India with a focus on digital sovereignty and user privacy.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Products Section -->
+                <section id="products" class="section">
+                    <div class="hero">
+                        <h2>Our Products</h2>
+                        <p>Innovative security solutions for modern communication needs.</p>
+                    </div>
+
+                    <div class="products-grid">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>🔒 Enclave Messenger</h3>
+                                <p class="status status--success">Active Development</p>
+                                <p>A secure messaging application with end-to-end encryption. Features GUI, CLI, and web interfaces with peer-to-peer architecture.</p>
+                                <ul>
+                                    <li>Hybrid encryption (RSA-2048 + AES-GCM)</li>
+                                    <li>Forward secrecy with session keys</li>
+                                    <li>Works offline and on various networks</li>
+                                    <li>Multiple interface options</li>
+                                </ul>
+                                <div class="flex gap-8">
+                                    <a href="https://github.com/Enclave-Software/Enclave-Messenger" class="btn btn--primary btn--sm">View Repository</a>
+                                    <a href="https://enclave-messenger.vercel.app/" class="btn btn--secondary btn--sm">Live Demo</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>🌐 Enclave Site</h3>
+                                <p class="status status--success">Deployed</p>
+                                <p>Official website and documentation for Enclave Messenger with interactive demos and comprehensive guides.</p>
+                                <ul>
+                                    <li>Interactive encryption demonstrations</li>
+                                    <li>Comprehensive documentation</li>
+                                    <li>Modern responsive design</li>
+                                    <li>Security architecture overview</li>
+                                </ul>
+                                <div class="flex gap-8">
+                                    <a href="https://github.com/Enclave-Software/Enclave-Site" class="btn btn--primary btn--sm">View Repository</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>🔐 Accounts.enclave</h3>
+                                <p class="status status--warning">In Development</p>
+                                <p>Authentication and user management system for Enclave ecosystem with modern security practices.</p>
+                                <ul>
+                                    <li>Secure user authentication</li>
+                                    <li>Multi-factor authentication support</li>
+                                    <li>Privacy-focused design</li>
+                                    <li>Integration with Enclave products</li>
+                                </ul>
+                                <div class="flex gap-8">
+                                    <a href="https://github.com/Enclave-Software/Accounts.enclave" class="btn btn--primary btn--sm">View Repository</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- About Section -->
+                <section id="about" class="section">
+                    <div class="hero">
+                        <h2>About Enclave Software</h2>
+                        <p>Building the future of secure communication, one encrypted message at a time.</p>
+                    </div>
+
+                    <div class="about-content">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Our Mission</h3>
+                                <p>To provide secure, private, and reliable communication tools that protect user privacy and enable free expression in the digital age.</p>
+                                
+                                <h3>Our Vision</h3>
+                                <p>A world where everyone has access to secure communication tools, where privacy is the default, not a privilege.</p>
+                                
+                                <h3>Our Values</h3>
+                                <ul>
+                                    <li><strong>Privacy First:</strong> Your data belongs to you, not us</li>
+                                    <li><strong>Transparency:</strong> Open source code for full auditability</li>
+                                    <li><strong>Security:</strong> Military-grade encryption as standard</li>
+                                    <li><strong>Accessibility:</strong> Tools that work for everyone, everywhere</li>
+                                    <li><strong>Innovation:</strong> Pushing the boundaries of secure communication</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Team & Contributors</h3>
+                                <p>Enclave Software is built by a passionate team of developers and security experts who believe in the fundamental right to privacy.</p>
+                                
+                                <div class="contributors">
+                                    <div class="contributor">
+                                        <h4>Original Concept</h4>
+                                        <p><strong>chinglen2080</strong> from Pune, Maharashtra</p>
+                                        <p><strong>ProPoswal</strong> from Haryana</p>
+                                    </div>
+                                </div>
+
+                                <h3>Community</h3>
+                                <p>Join our growing community of privacy advocates, security researchers, and developers working together to build a more secure digital future.</p>
+                                
+                                <div class="stats-grid">
+                                    <div class="stat">
+                                        <h4>5</h4>
+                                        <p>Active Repositories</p>
+                                    </div>
+                                    <div class="stat">
+                                        <h4>1+</h4>
+                                        <p>GitHub Followers</p>
+                                    </div>
+                                    <div class="stat">
+                                        <h4>🇮🇳</h4>
+                                        <p>Made in India</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Security Section -->
+                <section id="security" class="section">
+                    <div class="hero">
+                        <h2>Security First</h2>
+                        <p>Our commitment to security through transparency, best practices, and continuous improvement.</p>
+                    </div>
+
+                    <div class="security-overview">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>🔒 Security Features</h3>
+                                <div class="security-features">
+                                    <div class="security-item">
+                                        <h4>Encryption</h4>
+                                        <ul>
+                                            <li>Hybrid encryption (RSA-2048 + AES-256-GCM)</li>
+                                            <li>Perfect forward secrecy</li>
+                                            <li>AEAD with built-in authentication</li>
+                                        </ul>
+                                    </div>
+                                    <div class="security-item">
+                                        <h4>Key Management</h4>
+                                        <ul>
+                                            <li>Cryptographically secure random generation</li>
+                                            <li>Local encrypted storage only</li>
+                                            <li>Automatic session key rotation</li>
+                                        </ul>
+                                    </div>
+                                    <div class="security-item">
+                                        <h4>Network Security</h4>
+                                        <ul>
+                                            <li>End-to-end encryption</li>
+                                            <li>Minimal metadata exposure</li>
+                                            <li>Replay protection</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>🛡️ Security Best Practices</h3>
+                                <h4>For Users:</h4>
+                                <ul>
+                                    <li>Keep your private keys secure</li>
+                                    <li>Verify contact identities out-of-band</li>
+                                    <li>Use strong, unique usernames</li>
+                                    <li>Keep applications updated</li>
+                                    <li>Use secure networks when possible</li>
+                                </ul>
+
+                                <h4>For Developers:</h4>
+                                <ul>
+                                    <li>Follow secure coding practices</li>
+                                    <li>Regular security testing</li>
+                                    <li>Dependency vulnerability scanning</li>
+                                    <li>Code review for security issues</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>🔍 Vulnerability Reporting</h3>
+                                <p>We take security seriously. If you discover a security vulnerability:</p>
+                                <ol>
+                                    <li><strong>Do NOT</strong> create a public GitHub issue</li>
+                                    <li>Email us at: <strong>security@enclave-software.example.com</strong></li>
+                                    <li>Include detailed reproduction steps</li>
+                                    <li>Allow us 90 days to address before public disclosure</li>
+                                </ol>
+                                
+                                <div class="security-updates">
+                                    <h4>Security Update Timeline:</h4>
+                                    <ul>
+                                        <li><span class="status status--error">Critical:</span> Within 24 hours</li>
+                                        <li><span class="status status--warning">High:</span> Within 1 week</li>
+                                        <li><span class="status status--info">Medium:</span> Next regular release</li>
+                                        <li><span class="status status--success">Low:</span> Next major release</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contact Section -->
+                <section id="contact" class="section">
+                    <div class="hero">
+                        <h2>Get in Touch</h2>
+                        <p>Connect with us and join the secure communication movement.</p>
+                    </div>
+
+                    <div class="contact-grid">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>🐙 GitHub</h3>
+                                <p>Explore our repositories, contribute code, and report issues.</p>
+                                <a href="https://github.com/Enclave-Software" class="btn btn--primary">Visit GitHub Organization</a>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>🌐 Demo</h3>
+                                <p>Try Enclave Messenger directly in your browser.</p>
+                                <a href="https://enclave-messenger.vercel.app/" class="btn btn--primary">Try Live Demo</a>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>🔒 Security</h3>
+                                <p>Report security vulnerabilities responsibly.</p>
+                                <a href="mailto:security@enclave-software.example.com" class="btn btn--secondary">Report Security Issue</a>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>🤝 Contribute</h3>
+                                <p>Join our mission to build secure communication tools.</p>
+                                <div class="flex gap-8">
+                                    <a href="https://github.com/Enclave-Software/Enclave-Messenger/issues" class="btn btn--secondary btn--sm">Report Issues</a>
+                                    <a href="https://github.com/Enclave-Software/Enclave-Messenger/pulls" class="btn btn--secondary btn--sm">Submit PR</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h4>🔒 Enclave Software</h4>
+                        <p>Secure • Private • Open Source</p>
+                        <p>Made in India with ❤️ for secure communication</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Products</h4>
+                        <ul>
+                            <li><a href="https://github.com/Enclave-Software/Enclave-Messenger">Enclave Messenger</a></li>
+                            <li><a href="https://github.com/Enclave-Software/Enclave-Site">Enclave Site</a></li>
+                            <li><a href="https://github.com/Enclave-Software/Accounts.enclave">Accounts.enclave</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="https://github.com/Enclave-Software">GitHub</a></li>
+                            <li><a href="https://enclave-messenger.vercel.app/">Live Demo</a></li>
+                            <li><a href="mailto:security@enclave-software.example.com">Security</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Quote</h4>
+                        <blockquote>
+                            "Privacy is not something that I'm merely entitled to, it's an absolute prerequisite."
+                            <cite>- Marlon Brando</cite>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Enclave Software. GPL-3.0 License. Your messages. Your keys. Your privacy.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all nav tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Smooth scrolling for navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add smooth transitions
+            document.body.style.setProperty('scroll-behavior', 'smooth');
+            
+            // Initialize first section
+            showSection('home');
+        });
+    </script>
+
+    <style>
+        /* Additional styles specific to organization site */
+        .products-grid {
+            display: grid;
+            gap: var(--space-24);
+            margin-bottom: var(--space-32);
+        }
+
+        .about-content {
+            display: grid;
+            gap: var(--space-24);
+            margin-bottom: var(--space-32);
+        }
+
+        .contributors {
+            margin: var(--space-16) 0;
+        }
+
+        .contributor {
+            margin-bottom: var(--space-16);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-16);
+            margin-top: var(--space-16);
+        }
+
+        .stat {
+            text-align: center;
+            padding: var(--space-12);
+            background: var(--color-bg-1);
+            border-radius: var(--radius-base);
+        }
+
+        .stat h4 {
+            margin: 0;
+            font-size: var(--font-size-2xl);
+            color: var(--color-primary);
+        }
+
+        .stat p {
+            margin: var(--space-4) 0 0 0;
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+        .security-overview {
+            display: grid;
+            gap: var(--space-24);
+            margin-bottom: var(--space-32);
+        }
+
+        .security-features {
+            display: grid;
+            gap: var(--space-16);
+        }
+
+        .security-item h4 {
+            color: var(--color-primary);
+            margin-bottom: var(--space-8);
+        }
+
+        .security-updates {
+            margin-top: var(--space-16);
+        }
+
+        .security-updates ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .security-updates li {
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+            margin-bottom: var(--space-4);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-24);
+            margin-bottom: var(--space-32);
+        }
+
+        .footer {
+            background: var(--color-surface);
+            border-top: 1px solid var(--color-border);
+            padding: var(--space-32) 0 var(--space-16);
+            margin-top: var(--space-32);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-24);
+            margin-bottom: var(--space-24);
+        }
+
+        .footer-section h4 {
+            margin-bottom: var(--space-12);
+            color: var(--color-primary);
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-section li {
+            margin-bottom: var(--space-4);
+        }
+
+        .footer-section a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            transition: color var(--duration-fast) var(--ease-standard);
+        }
+
+        .footer-section a:hover {
+            color: var(--color-primary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--color-border);
+            padding-top: var(--space-16);
+            text-align: center;
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-sm);
+        }
+
+        blockquote {
+            font-style: italic;
+            border-left: 3px solid var(--color-primary);
+            padding-left: var(--space-16);
+            margin: var(--space-16) 0;
+        }
+
+        cite {
+            display: block;
+            margin-top: var(--space-8);
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
+</body>
+</html>

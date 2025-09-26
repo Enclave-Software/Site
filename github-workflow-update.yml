@@ -1,0 +1,302 @@
+name: Update Organization Site
+
+on:
+  repository_dispatch:
+    types: [update-org-site]
+  workflow_dispatch:
+  schedule:
+    # Run daily at 6:00 UTC to sync with GitHub
+    - cron: '0 6 * * *'
+  push:
+    branches: [main]
+
+jobs:
+  update-site:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Fetch organization repositories
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          
+          // Fetch all repositories from the organization
+          const { data: repos } = await github.rest.repos.listForOrg({
+            org: 'Enclave-Software',
+            type: 'public',
+            sort: 'updated',
+            per_page: 100
+          });
+          
+          // Process repository data
+          const repoData = repos.map(repo => ({
+            name: repo.name,
+            description: repo.description || 'No description provided',
+            html_url: repo.html_url,
+            topics: repo.topics || [],
+            language: repo.language,
+            stargazers_count: repo.stargazers_count,
+            forks_count: repo.forks_count,
+            updated_at: repo.updated_at,
+            created_at: repo.created_at,
+            archived: repo.archived
+          }));
+          
+          // Save to JSON file
+          fs.writeFileSync('repos-data.json', JSON.stringify(repoData, null, 2));
+          
+          console.log(`Found ${repoData.length} repositories`);
+          
+    - name: Update organization site
+      run: |
+        # Read the repo data and update the HTML file
+        node -e "
+        const fs = require('fs');
+        const repos = JSON.parse(fs.readFileSync('repos-data.json', 'utf8'));
+        
+        // Generate products section HTML based on repositories
+        const generateProductsSection = (repos) => {
+          const mainProducts = repos.filter(repo => 
+            !repo.archived && 
+            ['Enclave-Messenger', 'Enclave-Site', 'Accounts.enclave'].includes(repo.name)
+          );
+          
+          const otherRepos = repos.filter(repo => 
+            !repo.archived && 
+            !['Enclave-Messenger', 'Enclave-Site', 'Accounts.enclave'].includes(repo.name) &&
+            repo.name !== 'enclave-software.github.io'
+          );
+          
+          let html = '';
+          
+          // Main products
+          mainProducts.forEach(repo => {
+            const icon = repo.name === 'Enclave-Messenger' ? '🔒' : 
+                        repo.name === 'Enclave-Site' ? '🌐' : 
+                        repo.name === 'Accounts.enclave' ? '🔐' : '📦';
+            
+            const status = repo.name === 'Enclave-Messenger' ? 'success' :
+                          repo.name === 'Enclave-Site' ? 'success' :
+                          repo.name === 'Accounts.enclave' ? 'warning' : 'info';
+            
+            const statusText = repo.name === 'Enclave-Messenger' ? 'Active Development' :
+                              repo.name === 'Enclave-Site' ? 'Deployed' :
+                              repo.name === 'Accounts.enclave' ? 'In Development' : 'Available';
+            
+            const features = repo.name === 'Enclave-Messenger' ? [
+              'Hybrid encryption (RSA-2048 + AES-GCM)',
+              'Forward secrecy with session keys',
+              'Works offline and on various networks',
+              'Multiple interface options'
+            ] : repo.name === 'Enclave-Site' ? [
+              'Interactive encryption demonstrations',
+              'Comprehensive documentation',
+              'Modern responsive design',
+              'Security architecture overview'
+            ] : repo.name === 'Accounts.enclave' ? [
+              'Secure user authentication for Enclave Messenger',
+              'Multi-factor authentication support',
+              'Privacy-focused design',
+              'Integration with Enclave Messenger'
+            ] : [
+              'Open source repository',
+              'Community contributions welcome',
+              'Documentation available',
+              'Regular updates'
+            ];
+            
+            const demoLink = repo.name === 'Enclave-Messenger' || repo.name === 'Enclave-Site' ? 
+              '<a href=\"https://enclave-messenger.vercel.app/\" class=\"btn btn--secondary btn--sm\">Live Demo</a>' : '';
+            
+            html += \`
+                        <div class=\"card\">
+                            <div class=\"card__body\">
+                                <h3>\${icon} \${repo.name}</h3>
+                                <p class=\"status status--\${status}\">\${statusText}</p>
+                                <p>\${repo.description}</p>
+                                <ul>
+                                    \${features.map(feature => \`<li>\${feature}</li>\`).join('')}
+                                </ul>
+                                <div class=\"flex gap-8\">
+                                    <a href=\"\${repo.html_url}\" class=\"btn btn--primary btn--sm\">View Repository</a>
+                                    \${demoLink}
+                                </div>
+                            </div>
+                        </div>
+            \`;
+          });
+          
+          // Other repositories
+          if (otherRepos.length > 0) {
+            html += \`
+                        <div class=\"card\">
+                            <div class=\"card__body\">
+                                <h3>📦 Other Projects</h3>
+                                <p class=\"status status--info\">Community Projects</p>
+                                <p>Additional repositories and experimental projects from the Enclave Software organization.</p>
+                                <div class=\"other-repos\">
+                                    \${otherRepos.map(repo => \`
+                                        <div class=\"repo-item\">
+                                            <h4><a href=\"\${repo.html_url}\">\${repo.name}</a></h4>
+                                            <p>\${repo.description}</p>
+                                            \${repo.language ? \`<span class=\"language\">\${repo.language}</span>\` : ''}
+                                            <span class=\"stats\">⭐ \${repo.stargazers_count} • 🍴 \${repo.forks_count}</span>
+                                        </div>
+                                    \`).join('')}
+                                </div>
+                            </div>
+                        </div>
+            \`;
+          }
+          
+          return html;
+        };
+        
+        // Read the current HTML file
+        let html = fs.readFileSync('index.html', 'utf8');
+        
+        // Update the products section
+        const productsSection = generateProductsSection(repos);
+        
+        // Replace the products grid content
+        html = html.replace(
+          /<div class=\"products-grid\">[\s\S]*?<\/div>/,
+          '<div class=\"products-grid\">' + productsSection + '</div>'
+        );
+        
+        // Update repository count in about section
+        const activeRepos = repos.filter(repo => !repo.archived).length;
+        html = html.replace(
+          /<div class=\"stat\">[\s\S]*?<h4>\d+<\/h4>[\s\S]*?<p>Active Repositories<\/p>[\s\S]*?<\/div>/,
+          \`<div class=\"stat\"><h4>\${activeRepos}</h4><p>Active Repositories</p></div>\`
+        );
+        
+        // Update last updated timestamp
+        const now = new Date().toISOString();
+        html = html.replace(
+          /<!-- Last updated: [^>]* -->/,
+          \`<!-- Last updated: \${now} -->\`
+        );
+        
+        // Add the comment if it doesn't exist
+        if (!html.includes('<!-- Last updated:')) {
+          html = html.replace('<head>', '<head>\\n    <!-- Last updated: ' + now + ' -->');
+        }
+        
+        fs.writeFileSync('index.html', html);
+        console.log('Organization site updated successfully!');
+        "
+        
+    - name: Add custom CSS for dynamic content
+      run: |
+        # Add styles for dynamically generated content
+        cat >> style.css << 'EOF'
+        
+        /* Dynamic repository styles */
+        .other-repos {
+          display: grid;
+          gap: var(--space-16);
+          margin-top: var(--space-16);
+        }
+        
+        .repo-item {
+          padding: var(--space-12);
+          background: var(--color-bg-1);
+          border-radius: var(--radius-base);
+          border: 1px solid var(--color-border);
+        }
+        
+        .repo-item h4 {
+          margin: 0 0 var(--space-8) 0;
+        }
+        
+        .repo-item h4 a {
+          color: var(--color-primary);
+          text-decoration: none;
+        }
+        
+        .repo-item h4 a:hover {
+          color: var(--color-primary-hover);
+        }
+        
+        .repo-item p {
+          margin: 0 0 var(--space-8) 0;
+          color: var(--color-text-secondary);
+          font-size: var(--font-size-sm);
+        }
+        
+        .language {
+          display: inline-block;
+          padding: var(--space-2) var(--space-6);
+          background: var(--color-primary);
+          color: var(--color-btn-primary-text);
+          border-radius: var(--radius-full);
+          font-size: var(--font-size-xs);
+          font-weight: var(--font-weight-medium);
+          margin-right: var(--space-8);
+        }
+        
+        .stats {
+          font-size: var(--font-size-xs);
+          color: var(--color-text-secondary);
+        }
+        
+        /* Animation for updated content */
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .repo-item {
+          animation: fadeIn 0.3s ease-out;
+        }
+        
+        /* Responsive grid for products */
+        .products-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+          gap: var(--space-24);
+          margin-bottom: var(--space-32);
+        }
+        
+        @media (max-width: 768px) {
+          .products-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+        EOF
+        
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "🤖 Auto-update organization site with latest repositories"
+          git push
+        fi
+        
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/main'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./
+        
+    - name: Trigger repository dispatch for other repos
+      uses: actions/github-script@v7
+      with:
+        script: |
+          // Optional: Trigger updates in other repositories if needed
+          console.log('Organization site update completed');
