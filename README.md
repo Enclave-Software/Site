@@ -10,20 +10,6 @@ This is the official website for Enclave Software, automatically updated with th
 - **Dynamic content**: Repository information updated automatically
 - **GitHub Pages**: Deployed automatically on commits
 
-## 🔧 Setup Instructions
-
-1. **Create the repository**: Name it `enclave-software.github.io` for automatic GitHub Pages
-2. **Upload the files**:
-   - `index.html` (the main organization website)
-   - `style.css` (your existing CSS file)
-   - `.github/workflows/update-org-site.yml` (the auto-update workflow)
-
-3. **Enable GitHub Pages**:
-   - Go to repository Settings → Pages
-   - Select "Deploy from a branch"
-   - Choose "gh-pages" branch
-   - Your site will be available at `https://enclave-software.github.io`
-
 ## 🤖 Auto-Update System
 
 The website automatically updates when:
@@ -84,7 +70,3 @@ The auto-update system tracks:
 - Stars and forks
 - Last updated timestamps
 - Repository languages and topics
-
----
-
-**Your organization website will now stay automatically synchronized with your GitHub repositories!**
