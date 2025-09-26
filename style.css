@@ -19,13 +19,12 @@ body {
   text-decoration: none;
 }
 .hero {
-  background-color: #eee;
+  background-color: #34282C;
+  color: #522D80;
   padding: 2em;
   text-align: center;
 }
 .section {
-  background-color: #34282C;
-  color: #522D80;
   padding: 2em;
   max-width: 800px;
   margin: auto;
